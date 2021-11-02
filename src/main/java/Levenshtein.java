@@ -14,6 +14,7 @@ public class Levenshtein {
         for(int i = 0; i < s1.length() + 1; i++) {
             Arrays.fill(dp[i], -1);
         }
+        //jk
         for (int i = 0 ; i <10; i++ ) {
             long currentTime = System.currentTimeMillis();
       //  System.out.println("Левенштейн с памятью и рекурсией " + RecursionWithMemory.minDis(s1, s2, s1.length(), s2.length(), dp));
