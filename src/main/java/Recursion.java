@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 class Recursion {
 
-    static Instant startInstant = Instant.now();
 
     static int computeLevenshteinDistance(String s1, String s2) {
         if (s1.isEmpty()) {
@@ -31,7 +30,4 @@ class Recursion {
         // получает количество выполненных различных операций и возвращает минимальное значение среди них.
         return Arrays.stream(nums).min().orElse(Integer.MAX_VALUE);
     }
-    // }
-    static Instant finishInstant = Instant.now();
-    static long difference = finishInstant.toEpochMilli() - startInstant.toEpochMilli();
 }
