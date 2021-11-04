@@ -1,19 +1,7 @@
-
-
-
     public class DLA {
-         /**
-         * Calculates the string distance between s1 and s2 strings using
-         * the Damerau-Levenshtein algorithm. The distance is case-sensitive.
-         *
-         * @param s1 The s1 String.
-         * @param s2 The s2 String.
-         * @return The distance between s1 and s2 strings.
-         * @throws IllegalArgumentException If either s1 or s2 is null.
-         */
         public static int cdDLA(CharSequence s1, CharSequence s2) {
             if (s1 == null || s2 == null) {
-                throw new IllegalArgumentException("Parameter must not be null");
+                throw new IllegalArgumentException("Параметр не может быть пустым");
             }
             int s1length = s1.length();
             int s2length = s2.length();

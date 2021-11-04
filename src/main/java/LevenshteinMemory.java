@@ -1,6 +1,5 @@
 
 // Левенштейн с памятью
-import java.time.Instant;
 import java.util.Arrays;
 
 public class LevenshteinMemory {
@@ -28,17 +27,13 @@ public class LevenshteinMemory {
         }
         return dp[s1.length()][s2.length()];
     }
-
     // check for distinct characters in s1 and s2
     static int NumOfReplacement(char c1, char c2) {
         return c1 == c2 ? 0 : 1;
     }
-
     // receives the count of different operations performed and returns the minimum value among them.
     static int minm_edits(int... nums) {
         return Arrays.stream(nums).min().orElse(Integer.MAX_VALUE);
     }
 
-  //  static Instant finishInstant = Instant.now();
- //   static long difference = finishInstant.toEpochMilli() - startInstant.toEpochMilli();
 }

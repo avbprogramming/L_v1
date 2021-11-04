@@ -70,8 +70,6 @@ public class Levenshtein {
         bufferedWriter.newLine();
         bufferedWriter.flush();
         bufferedWriter.close();
-//        String file = "/home/avb/Documents/Учеба/Java_project/output.xlsx";
-//        String sheetname = "levenshtein";
 
     }
 }
