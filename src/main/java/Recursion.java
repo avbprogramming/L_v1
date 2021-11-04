@@ -1,35 +1,34 @@
-// Java implementation of recursive Levenshtein distance
+//рекурсивный без кеша O(3^n), потому что на каждом шаге программа расходится на три рекурсивных вызова.
 
 import java.time.Instant;
 import java.util.Arrays;
 
-class Recursion { //рекурсивный без кеша O(3^n), потому что на каждом шаге программа расходится на три рекурсивных вызова.
+class Recursion {
 
     static Instant startInstant = Instant.now();
 
     static int computeLevenshteinDistance(String s1, String s2) {
-        //  for (int i = 0; i < 10; i++) {
         if (s1.isEmpty()) {
             return s2.length();
         }
         if (s2.isEmpty()) {
             return s1.length();
         }
-        // calculate the number of distinct characters to be replaced in s1 by recursively traversing each substring
+        // вычисляем количество различных символов, которые нужно заменить в s1, путем рекурсивного обхода каждой подстроки
         int replace = computeLevenshteinDistance(s1.substring(1), s2.substring(1)) + NumOfReplacement(s1.charAt(0), s2.charAt(0));
-        // calculate the number of insertions in s1 recursively
+        // количество вставок в s1 рекурсивно
         int insert = computeLevenshteinDistance(s1, s2.substring(1)) + 1;
-        // calculate the number of deletions in s1 recursively
+        // количество удалений в s1 рекурсивно
         int delete = computeLevenshteinDistance(s1.substring(1), s2) + 1;
-        // returns minimum of three operatoins
+        // возвращаем минимум три операции
         return minm_edits(replace, insert, delete);
     }
     static int NumOfReplacement ( char c1, char c2){
-        // check for distinct characters in s1 and s2
+        // проверка наличие различных символов в s1 и s2
         return c1 == c2 ? 0 : 1;
     }
     static int minm_edits ( int...nums){
-        // receives the count of different operations performed and returns the minimum value among them.
+        // получает количество выполненных различных операций и возвращает минимальное значение среди них.
         return Arrays.stream(nums).min().orElse(Integer.MAX_VALUE);
     }
     // }

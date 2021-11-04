@@ -1,30 +1,24 @@
-import static java.lang.System.currentTimeMillis;
-import java.sql.Timestamp;
-import java.time.Instant;
+
 // Рекурсия с памятью
 class RecursionWithMemory {
- //   static Timestamp startTimestamp = new Timestamp(System.currentTimeMillis());
-   // static Instant startInstant = startTimestamp.toInstant();
     static int minDis(String s1, String s2, int n, int m, int[][] dp) {
-        // for (int i = 0; i < 10; i++) {
-        // If any String is empty, return the remaining characters of other String
         if (n == 0)
             return m;
         if (m == 0)
             return n;
-        // To check if the recursive tree for given n & m has already been executed
+        // Проверка была ли уже выполнена рекурсия для n и m
         if (dp[n][m] != -1)
             return dp[n][m];
-        // If characters are equal, execute recursive function for n-1, m-1
+        // Проверка была ли уже выполнена рекурсия для n и m, если символы равны, выполнить рекурсивную функцию для n-1, m-1
         if (s1.charAt(n - 1) == s2.charAt(m - 1)) {
             if (dp[n - 1][m - 1] == -1) {
                 return dp[n][m] = minDis(s1, s2, n - 1, m - 1, dp);
             } else
                 return dp[n][m] = dp[n - 1][m - 1];
         }
-        // If characters are not equal, we need to find the minimum cost out of all 3 operations.
+        // Если символы не равны, ищем минимальную стоимость всех 3 операций
         else {
-            int m1, m2, m3;        // temp variables
+            int m1, m2, m3;
             if (dp[n - 1][m] != -1) {
                 m1 = dp[n - 1][m];
             } else {
@@ -44,7 +38,4 @@ class RecursionWithMemory {
             return dp[n][m] = 1 + Math.min(m1, Math.min(m2, m3));
         }
     }
- //   static Timestamp finishTimestamp = new Timestamp(System.currentTimeMillis());
-   // static Instant finishInstant = finishTimestamp.toInstant();
-   // static long timePass = finishInstant.toEpochMilli() - startInstant.toEpochMilli();
 }
