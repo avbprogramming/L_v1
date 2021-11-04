@@ -1,7 +1,6 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.*;
 
 public class Levenshtein {
@@ -28,7 +27,7 @@ public class Levenshtein {
             Recursion.computeLevenshteinDistance(s1, s2);
         }
         long RecursionFinalTime = ((System.nanoTime()- RecursionCurrentTime) / count);
-        System.out.println("Среднее время выполнения рекурсии с учетом запуска: " + count + " раз. Среднее время выполнения: " + RecursionFinalTime);
+        System.out.println("Левенштейн с рекурсии. Запусков:  " + count + " раз. Среднее время выполнения: " + RecursionFinalTime);
 
 
         long RecursionWithMemoryCurrentTime = System.nanoTime();
@@ -36,7 +35,7 @@ public class Levenshtein {
             RecursionWithMemory.minDis(s1, s2, s1.length(), s2.length(), dp);
         }
         long RecursionWithMemoryFinalTime = ((System.nanoTime()-RecursionWithMemoryCurrentTime) / count);
-        System.out.println("Среднее время выполнения рекурсии с использованием памяти и учетом запуска: " + count + " раз. Среднее время выполнения: " + RecursionWithMemoryFinalTime);
+        System.out.println("Левештейн с рекурсией и памятью. Запусков: : " + count + " раз. Среднее время выполнения: " + RecursionWithMemoryFinalTime);
 
 
         long LevenshteinMemoryCurrentTime = System.nanoTime();
@@ -44,15 +43,30 @@ public class Levenshtein {
             LevenshteinMemory.computeLevenshteinDistanceDP(s1, s2);
         }
         long LevenshteinMemoryFinalTime =((System.nanoTime()-LevenshteinMemoryCurrentTime) / count);
-        System.out.println("Среднее время выполнения с использованием памяти и учетом запуска: " + count + " раз. Среднее время выполнения: " + LevenshteinMemoryFinalTime);
+        System.out.println("Левешнтейн с памятью. Запусков:  " + count + " раз. Среднее время выполнения: " + LevenshteinMemoryFinalTime);
+
+
+        long DLACurrentTime = System.nanoTime();
+        for (int i = 0 ; i <count; i++ ) {
+            DLA.cdDLA(s1, s2);
+        }
+        long DLAFinalTime = ((System.nanoTime()- DLACurrentTime) / count);
+        System.out.println("Дамерау - Левенштен. Запусков: " + count + " раз. Среднее время выполнения: " + DLAFinalTime);
+        System.out.println("Расстояние преобразование с помощью Дамерау - Левенштейна " + DLA.cdDLA(s1,s2));
 
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("file.txt"));
-        bufferedWriter.write("Среднее время выполнения рекурсии с учетом запуска: " + count + " раз. Среднее время выполнения: " + RecursionFinalTime);
+        bufferedWriter.write("Расстояние преобразования слов: " + LevenshteinMemory.computeLevenshteinDistanceDP(s1, s2));
+        bufferedWriter.newLine();
+        bufferedWriter.write("Левенштейн с рекурсии. Запусков:  " + count + " раз. Среднее время выполнения: " + RecursionFinalTime);
         bufferedWriter.newLine();
         bufferedWriter.flush();
-        bufferedWriter.write("Среднее время выполнения рекурсии с использованием памяти и учетом запуска: " + count + " раз. Среднее время выполнения: " + RecursionWithMemoryFinalTime);
+        bufferedWriter.write("Левештейн с рекурсией и памятью. Запусков: : " + count + " раз. Среднее время выполнения: " + RecursionWithMemoryFinalTime);
         bufferedWriter.newLine();
-        bufferedWriter.flush(); bufferedWriter.write("Среднее время выполнения с использованием памяти и учетом запуска: " + count + " раз. Среднее время выполнения: " + LevenshteinMemoryFinalTime);
+        bufferedWriter.flush(); bufferedWriter.write("Левешнтейн с памятью. Запусков:  " + count + " раз. Среднее время выполнения: " + LevenshteinMemoryFinalTime);
+        bufferedWriter.newLine();
+        bufferedWriter.flush(); bufferedWriter.write("Дамерау - Левенштейн. Запусков: " + count + " раз. Среднее время выполнения: " + DLAFinalTime);
+        bufferedWriter.newLine();
+        bufferedWriter.flush(); bufferedWriter.write("Расстояние преобразование с помощью Дамерау - Левенштейна " + DLA.cdDLA(s1,s2));
         bufferedWriter.newLine();
         bufferedWriter.flush();
         bufferedWriter.close();
