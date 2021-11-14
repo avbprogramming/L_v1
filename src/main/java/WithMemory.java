@@ -2,7 +2,7 @@
 // Левенштейн с памятью
 import java.util.Arrays;
 
-public class LevenshteinMemory {
+public class WithMemory {
   public static int computeLevenshteinDistanceDP(String s1, String s2) {
         // Двумерная матрица для хранения ранее рассчитанных ответов подзадач для получения окончательного
         int[][] dp = new int[s1.length() + 1][s2.length() + 1];

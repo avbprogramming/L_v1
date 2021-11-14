@@ -3,7 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-public class Levenshtein {
+public class LevenshteinMainClass {
 
     public static void main (String[] args) throws IOException {
         System.out.println("Левенштейн");
@@ -19,7 +19,7 @@ public class Levenshtein {
         for(int i = 0; i < s1.length() + 1; i++) {
             Arrays.fill(dp[i], -1);
         }
-        System.out.println("Расстояние преобразования слов: " + LevenshteinMemory.computeLevenshteinDistanceDP(s1, s2));
+        System.out.println("Расстояние преобразования слов: " + WithMemory.computeLevenshteinDistanceDP(s1, s2));
         System.out.println("Скорость выполнения каждого метода записаны в файл.");
 
         long RecursionCurrentTime = System.nanoTime();
@@ -40,7 +40,7 @@ public class Levenshtein {
 
         long LevenshteinMemoryCurrentTime = System.nanoTime();
         for (int i = 0 ; i <count; i++ ) {
-            LevenshteinMemory.computeLevenshteinDistanceDP(s1, s2);
+            WithMemory.computeLevenshteinDistanceDP(s1, s2);
         }
         long LevenshteinMemoryFinalTime =((System.nanoTime()-LevenshteinMemoryCurrentTime) / count);
         System.out.println("Левешнтейн с памятью. Запусков:  " + count + " раз. Среднее время выполнения: " + LevenshteinMemoryFinalTime);
@@ -48,14 +48,14 @@ public class Levenshtein {
 
         long DLACurrentTime = System.nanoTime();
         for (int i = 0 ; i <count; i++ ) {
-            DLA.cdDLA(s1, s2);
+            DamerauLevenshteinAlgo.cdDLA(s1, s2);
         }
         long DLAFinalTime = ((System.nanoTime()- DLACurrentTime) / count);
         System.out.println("Дамерау - Левенштен. Запусков: " + count + " раз. Среднее время выполнения: " + DLAFinalTime);
-        System.out.println("Расстояние преобразование с помощью Дамерау - Левенштейна " + DLA.cdDLA(s1,s2));
+        System.out.println("Расстояние преобразование с помощью Дамерау - Левенштейна " + DamerauLevenshteinAlgo.cdDLA(s1,s2));
 
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("file.txt"));
-        bufferedWriter.write("Расстояние преобразования слов: " + LevenshteinMemory.computeLevenshteinDistanceDP(s1, s2));
+        bufferedWriter.write("Расстояние преобразования слов: " + WithMemory.computeLevenshteinDistanceDP(s1, s2));
         bufferedWriter.newLine();
         bufferedWriter.write("Левенштейн с рекурсии. Запусков:  " + count + " раз. Среднее время выполнения: " + RecursionFinalTime);
         bufferedWriter.newLine();
@@ -66,7 +66,7 @@ public class Levenshtein {
         bufferedWriter.newLine();
         bufferedWriter.flush(); bufferedWriter.write("Дамерау - Левенштейн. Запусков: " + count + " раз. Среднее время выполнения: " + DLAFinalTime);
         bufferedWriter.newLine();
-        bufferedWriter.flush(); bufferedWriter.write("Расстояние преобразование с помощью Дамерау - Левенштейна " + DLA.cdDLA(s1,s2));
+        bufferedWriter.flush(); bufferedWriter.write("Расстояние преобразование с помощью Дамерау - Левенштейна " + DamerauLevenshteinAlgo.cdDLA(s1,s2));
         bufferedWriter.newLine();
         bufferedWriter.flush();
         bufferedWriter.close();

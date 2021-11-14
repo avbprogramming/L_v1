@@ -1,4 +1,4 @@
-    public class DLA {
+    public class DamerauLevenshteinAlgo {
         public static int cdDLA(CharSequence s1, CharSequence s2) {
             if (s1 == null || s2 == null) {
                 throw new IllegalArgumentException("Параметр не может быть пустым");
